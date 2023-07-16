@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pangolin&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">
+            Guess The Number
+        </h1>
+        <button type="button" id="start">START</button>
+        <div class="canvas">
+            <form id="form">
+                <input required type="number" id="number-input"><br />
+                <button type="submit" id="submit">Guess</button>
+            </form>
+            <div>
+                <p>Player's guesses:</p>
+                <div class="user-list"></div>
+            </div>
+            <div>
+                <p>CPU guesses:</p>
+                <div class="cpu-list"></div>
+            </div>
+            <span id="output"></span>
+        </div>
+        <div class="chars-container">
+            <div class="char1">
+                <img src="./images/char1.gif" alt="First character">
+            </div>
+            <div class="char2">
+                <img src="./images/char2.gif" alt="econd character">
+            </div>
+        </div>
+    </div>
+    <script src="./scripts/main.js"></script>
+</body>
+</html>
