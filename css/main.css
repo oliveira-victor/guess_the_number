@@ -66,3 +66,9 @@ button {
 .chars-container img:hover {
     transform: scale(1.05);
 }
+
+@media screen and (max-width: 767px) {
+    .title {
+        font-size: 5vh;
+    }
+}
