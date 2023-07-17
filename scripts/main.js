@@ -6,6 +6,8 @@ const userList = document.querySelector('.user-list');
 const cpuList = document.querySelector('.cpu-list');
 const canvas = document.querySelector('.canvas')
 
+const char = document.querySelector('.char1');
+
 let secretNumber = 0;
 let userGuess = 0;
 let cpuGuess = 0;
@@ -13,7 +15,6 @@ let arrUser = []
 let minNumber = 0;
 let maxNumber = 0;
 let arrCpu = []
-
 
 startButton.addEventListener(('click'), function() {
     randomNumber();
@@ -43,9 +44,11 @@ const cpuTurn = () => {
     } else if (cpuGuess < secretNumber) {
         minNumber = cpuGuess + 1;
     } else {
-        alert(`Computer guesses the right number: ${cpuGuess}. GAME OVER!`)
-        canvas.style.display = 'none';
-        // output.innerHTML = `<h2 class="game-over">CPU guessed the right number: ${cpuGuess}. GAME OVER!</h2>`;
+        setTimeout(function() {
+            form.style.display = "none"
+            char.innerHTML = '<img src="./images/char1-lose.webp" alt="First character">'
+            output.innerHTML = `<h2>Computer guesses the right number: ${cpuGuess}. GAME OVER!</h2>`;
+        }, 1000)
     }
 
     if (minNumber == maxNumber) {
@@ -77,9 +80,13 @@ form.addEventListener('submit', function(e) {
     numberInput.value = '';
 
     function validGuess() {
+        char.innerHTML = '<img src="./images/char1-guess.webp" alt="First character">'
         arrUser.push(userGuess)
         userList.innerHTML = arrUser.toString();
         validGuess = false
+        setTimeout(function() {
+            char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
+        }, 1000)
         cpuTurn();
     }
 })
