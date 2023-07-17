@@ -28,7 +28,7 @@ startButton.addEventListener(('click'), function() {
 
 const randomNumber = () => {
     minNumber = 1;
-    maxNumber = 10;
+    maxNumber = 50;
     secretNumber = Math.floor(Math.random() * maxNumber) + 1;
     // secretNumber = Math.floor(Math.random() * 10) + 1;
 }
