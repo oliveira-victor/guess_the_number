@@ -23,6 +23,7 @@ startButton.addEventListener(('click'), function() {
     canvas.style.display = 'block';
     
     document.querySelector('.title').style.display = 'none';
+    document.querySelector('.menu-buttons-container').style.display = 'none';
 })
 
 const randomNumber = () => {
