@@ -4,7 +4,12 @@ const numberInput = document.getElementById('number-input');
 const output = document.getElementById('output');
 const userList = document.querySelector('.user-list');
 const cpuList = document.querySelector('.cpu-list');
-const canvas = document.querySelector('.canvas')
+const canvas = document.querySelector('.canvas');
+const restart = document.getElementById('restart');
+const gameoverButtons = document.querySelector('.gameover-buttons');
+const counter = document.querySelector('.victory-count');
+const playerVictory = document.querySelector('.player-victory');
+const cpuVictory = document.querySelector('.opponent-victory');
 
 const char = document.querySelector('.char1');
 
@@ -16,12 +21,17 @@ let minNumber = 0;
 let maxNumber = 0;
 let arrCpu = []
 
+let playerScore = 0;
+let cpuScore = 0;
+
 startButton.addEventListener(('click'), function() {
     randomNumber();
+    char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
     output.innerHTML = `<h2>Guess a number between ${minNumber} and ${maxNumber}</h2>`;
     startButton.style.display = 'none';
     numberInput.style.display = 'block'
     canvas.style.display = 'block';
+    counter.style.display = 'flex';
     
     document.querySelector('.title').style.display = 'none';
     document.querySelector('.menu-buttons-container').style.display = 'none';
@@ -29,7 +39,7 @@ startButton.addEventListener(('click'), function() {
 
 const randomNumber = () => {
     minNumber = 1;
-    maxNumber = 50;
+    maxNumber = 3;
     secretNumber = Math.floor(Math.random() * maxNumber) + 1;
     // secretNumber = Math.floor(Math.random() * 10) + 1;
 }
@@ -45,15 +55,24 @@ const cpuTurn = () => {
         minNumber = cpuGuess + 1;
     } else {
         setTimeout(function() {
+            cpuScore += 1;
+            cpuVictory.innerHTML = cpuScore;
+
             form.style.display = "none"
             char.innerHTML = '<img src="./images/char1-lose.webp" alt="First character">'
-            output.innerHTML = `<h2>Computer guesses the right number: ${cpuGuess}. GAME OVER!</h2>`;
+            output.innerHTML = `<h2>Your opponent guessed the right number: ${secretNumber}. <br />GAME OVER!</h2>`;
         }, 1000)
+        gameoverButtons.style.display = 'block';
     }
 
     if (minNumber == maxNumber) {
+        playerScore += 1;
+        playerVictory.innerHTML = playerScore;
+
+        char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">'
         output.innerHTML = `<h2>You got the last number: ${secretNumber}. YOU WIN!</h2>`;
         form.style.display = 'none';
+        gameoverButtons.style.display = 'block';
     } else {
         output.innerHTML = `<h2>Guess between ${minNumber} and ${maxNumber}</h2>`;
     }
@@ -73,8 +92,15 @@ form.addEventListener('submit', function(e) {
         minNumber = userGuess + 1;
         validGuess()
     } else {
-        output.innerHTML = `<h2>Acertou, mizerávi! Número ${secretNumber}</h2>`;
+        arrUser.push(userGuess)
+        playerScore += 1;
+        playerVictory.innerHTML = playerScore;
+
+        char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">'
+        userList.innerHTML = arrCpu.toString();
+        output.innerHTML = `<h2>You guessed the right number! ${secretNumber}.<br />YOU WIN!</h2>`;
         form.style.display = 'none';
+        gameoverButtons.style.display = 'block';
     }
 
     numberInput.value = '';
@@ -89,4 +115,27 @@ form.addEventListener('submit', function(e) {
         }, 1000)
         cpuTurn();
     }
+})
+
+restart.addEventListener('click', function(e) {
+    e.preventDefault();
+    randomNumber();
+
+    userGuess = 0;
+    cpuGuess = 0;
+    arrUser = []
+    arrCpu = []
+
+    cpuList.innerHTML = arrCpu.toString();
+    userList.innerHTML = arrCpu.toString();
+
+    output.innerHTML = `<h2>Guess a number between ${minNumber} and ${maxNumber}</h2>`;
+
+    form.style.display = 'flex';
+
+    gameoverButtons.style.display = 'none';
+
+    char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
+
+
 })

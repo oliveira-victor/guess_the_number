@@ -24,12 +24,11 @@
         <div class="canvas">
             <form id="form">
                 <input required type="number" id="number-input">
-                <button type="submit" id="submit">Guess</button>
+                <button class="button" type="submit" id="submit">Guess</button>
             </form>
         </div>
         <div class="chars-container">
             <div class="char1">
-                <img src="./images/char1.webp" alt="First character">
             </div>
             <div class="char2">
                 <img src="./images/char2.webp" alt="econd character">
@@ -43,6 +42,20 @@
             <p>Opponent's guesses:</p>
             <div class="cpu-list"></div>
         </div>
+        <div class="victory-count">
+            <div>
+                <h3>Player's victories:</h3>
+                <div class="player-victory counter">0</div>
+            </div>
+            <div>
+                <h3>Opponent's victories:</h3>
+                <div class="opponent-victory counter">0</div>
+            </div>
+        </div>
+        <form class="gameover-buttons">
+            <button class="button gameover-btn" id="restart">Play again</button>
+            <button class="button gameover-btn" type="submit">Quit</button>
+        </form>
     </div>
     <script src="./scripts/main.js"></script>
 </body>

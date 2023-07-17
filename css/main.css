@@ -78,7 +78,7 @@ input:focus {
     outline: none;
 }
 
-button {
+.button {
     width: 120px;
     height: 40px;
     background-color: #e47813;
@@ -89,7 +89,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.button:hover {
     background-color: #da6900;
 }
 
@@ -121,6 +121,29 @@ button:hover {
 
 .guesses-list {
     margin-top: 20px;
+}
+
+.gameover-buttons {
+    display: none;
+}
+
+.gameover-btn {
+    margin: 20px auto;
+    width: 200px;
+    height: 60px;
+    padding: 6px;
+    display: block;
+    text-transform: uppercase;
+}
+
+.victory-count {
+    display: none;
+    justify-content: space-around;
+    margin: 30px auto;
+}
+
+.counter {
+    font-size: 2em;
 }
 
 @media screen and (max-width: 767px) {
