@@ -20,20 +20,12 @@
             <button class="menu-btn" type="button">Credits</button>
         </div>
         <button type="button" id="start">START</button>
-        <span id="output"></span>
+        <div id="output"></div>
         <div class="canvas">
             <form id="form">
-                <input required type="number" id="number-input"><br />
+                <input required type="number" id="number-input">
                 <button type="submit" id="submit">Guess</button>
             </form>
-            <div>
-                <p>Player's guesses:</p>
-                <div class="user-list"></div>
-            </div>
-            <div>
-                <p>CPU guesses:</p>
-                <div class="cpu-list"></div>
-            </div>
         </div>
         <div class="chars-container">
             <div class="char1">
@@ -42,6 +34,14 @@
             <div class="char2">
                 <img src="./images/char2.webp" alt="econd character">
             </div>
+        </div>
+        <div class="guesses-list">
+            <p>Player's guesses:</p>
+            <div class="user-list"></div>
+        </div>
+        <div>
+            <p>Opponent's guesses:</p>
+            <div class="cpu-list"></div>
         </div>
     </div>
     <script src="./scripts/main.js"></script>
