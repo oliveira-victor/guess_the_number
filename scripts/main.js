@@ -33,11 +33,14 @@ startButton.addEventListener(('click'), function () {
     randomNumber();
     char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
     output.innerHTML = `<h2>Guess a number between ${minNumber} and ${maxNumber}</h2>`;
+    /*
     startButton.style.display = 'none';
     numberInput.style.display = 'block'
     canvas.style.display = 'block';
     counter.style.display = 'flex';
-
+    */
+    document.getElementById('main-section').style.display = 'none';
+    document.getElementById('game-section').style.display = 'block';
     document.querySelector('.title').style.display = 'none';
     document.querySelector('.menu-buttons-container').style.display = 'none';
 })
@@ -101,7 +104,11 @@ form.addEventListener('submit', function (e) {
         userGuess = Number(numberInput.value);
 
         if (userGuess < minNumber || userGuess > maxNumber) {
-            alert("This number is not an option.")
+            // alert("This number is not an option.")
+            setTimeout(() => {
+                form.classList.remove('shake');
+            }, 500);
+            form.classList.add('shake');
         } else if (userGuess > secretNumber) {
             maxNumber = userGuess - 1;
             validGuess()

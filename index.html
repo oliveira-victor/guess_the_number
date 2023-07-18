@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,53 +10,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Pangolin&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
-        <div class="title">
-            <img src="./images/title.svg" alt="Guess The Number">
-        </div>
-        <div class="menu-buttons-container">
-            <button class="menu-btn" type="button">Start game</button>
-            <button class="menu-btn" type="button">How to play</button>
-            <button class="menu-btn" type="button">Credits</button>
-        </div>
-        <button type="button" id="start">START</button>
-        <div id="output"></div>
-        <div class="canvas">
-            <form id="form">
-                <input required type="number" id="number-input">
-                <button class="button" type="submit" id="submit">Guess</button>
+        <section id="main-section">
+            <div class="title">
+                <img src="./images/title.svg" alt="Guess The Number">
+            </div>
+            <div class="menu-buttons-container">
+                <button id="start" class="menu-btn" type="button">Start game</button>
+                <button class="menu-btn" type="button">How to play</button>
+                <button class="menu-btn" type="button">Credits</button>
+            </div>
+        </section>
+        <section id="game-section">
+            <div id="output"></div>
+            <div class="canvas">
+                <form id="form">
+                    <input required type="number" id="number-input">
+                    <button class="button" type="submit" id="submit">Guess</button>
+                </form>
+            </div>
+            <div class="chars-container">
+                <div class="char1">
+                </div>
+                <div class="char2">
+                    <img src="./images/char2.webp" alt="econd character">
+                </div>
+            </div>
+            <div class="guesses-list">
+                <p>Player's guesses:</p>
+                <div class="user-list"></div>
+            </div>
+            <div>
+                <p>Opponent's guesses:</p>
+                <div class="cpu-list"></div>
+            </div>
+            <div class="victory-count">
+                <div>
+                    <h3>Player's victories:</h3>
+                    <div class="player-victory counter">0</div>
+                </div>
+                <div>
+                    <h3>Opponent's victories:</h3>
+                    <div class="opponent-victory counter">0</div>
+                </div>
+            </div>
+            <form class="gameover-buttons">
+                <button class="button gameover-btn" id="restart">Play again</button>
+                <button class="button gameover-btn" type="submit">Quit</button>
             </form>
-        </div>
-        <div class="chars-container">
-            <div class="char1">
-            </div>
-            <div class="char2">
-                <img src="./images/char2.webp" alt="econd character">
-            </div>
-        </div>
-        <div class="guesses-list">
-            <p>Player's guesses:</p>
-            <div class="user-list"></div>
-        </div>
-        <div>
-            <p>Opponent's guesses:</p>
-            <div class="cpu-list"></div>
-        </div>
-        <div class="victory-count">
-            <div>
-                <h3>Player's victories:</h3>
-                <div class="player-victory counter">0</div>
-            </div>
-            <div>
-                <h3>Opponent's victories:</h3>
-                <div class="opponent-victory counter">0</div>
-            </div>
-        </div>
-        <form class="gameover-buttons">
-            <button class="button gameover-btn" id="restart">Play again</button>
-            <button class="button gameover-btn" type="submit">Quit</button>
-        </form>
+        </section>
     </div>
     <footer class="footer">
         <div class="footer-container">
@@ -75,7 +80,8 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="./scripts/main.js"></script>
 </body>
+
 </html>
