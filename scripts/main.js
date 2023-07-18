@@ -27,6 +27,8 @@ let maxNumber = 0;
 let playerScore = 0;
 let cpuScore = 0;
 
+let gameover = false;
+
 startButton.addEventListener(('click'), function () {
     randomNumber();
     char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
@@ -66,6 +68,7 @@ const cpuTurn = () => {
 
         form.style.display = "none"
         char.innerHTML = '<img src="./images/char1-lose.webp" alt="First character">';
+        cpu.innerHTML = '<img src="./images/char2-win.webp" alt="First character">';
         output.innerHTML = `<h2>Your opponent guessed the right number: ${secretNumber}. <br />GAME OVER!</h2>`;
         gameoverButtons.style.display = 'block';
     }
@@ -77,8 +80,15 @@ const cpuTurn = () => {
         char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">';
         cpu.innerHTML = '<img src="./images/char2-lose.webp" alt="First character">';
         output.innerHTML = `<h2>You got the last number: ${secretNumber}. <br />YOU WIN!</h2>`;
+        gameover = true;
         form.style.display = 'none';
         gameoverButtons.style.display = 'block';
+    }
+
+    let numbersDifference = maxNumber - minNumber;
+    if (numbersDifference <= 3 && gameover != true) {
+        char.innerHTML = '<img src="./images/char1-fear.webp" alt="First character">';
+        cpu.innerHTML = '<img src="./images/char2-fear.webp" alt="First character">';
     }
 
     playerTurn = true;
@@ -124,7 +134,7 @@ form.addEventListener('submit', function (e) {
     }
 })
 
-restart.addEventListener('click', function (e) {
+restart.addEventListener('click', function(e) {
     e.preventDefault();
     randomNumber();
 
@@ -143,7 +153,9 @@ restart.addEventListener('click', function (e) {
     gameoverButtons.style.display = 'none';
 
     char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
+    cpu.innerHTML = '<img src="./images/char2.webp" alt="First character">';
 
+    gameover = false;
     playerTurn = true;
 
 
