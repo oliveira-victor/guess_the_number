@@ -18,10 +18,22 @@
                 <img src="./images/title.svg" alt="Guess The Number">
             </div>
             <div class="menu-buttons-container">
-                <button id="start" class="menu-btn" type="button">Start game</button>
+                <a href="#players-section"><button id="choose-chars-btn" class="menu-btn" type="button">Start game</button></a>
                 <button class="menu-btn" type="button">How to play</button>
                 <button class="menu-btn" type="button">Credits</button>
             </div>
+        </section>
+        <section id="players-section">
+            <h2>Choose your character to play with.</h2>
+            <div class="chars-container">
+                <div id="choice1">
+                    <img src="./images/char1.webp" alt="Character 1">
+                </div>
+                <div id="choice2">
+                    <img src="./images/char2.webp" alt="Character 2">
+                </div>
+            </div>
+            <button id="start" class="menu-btn" type="button">Ready!</button>
         </section>
         <section id="game-section">
             <div id="output"></div>
@@ -35,7 +47,6 @@
                 <div class="char1">
                 </div>
                 <div class="char2">
-                    <img src="./images/char2.webp" alt="econd character">
                 </div>
             </div>
             <div class="guesses-list">
@@ -58,7 +69,7 @@
             </div>
             <form class="gameover-buttons">
                 <button class="button gameover-btn" id="restart">Play again</button>
-                <button class="button gameover-btn" type="submit">Quit</button>
+                <button class="button gameover-btn">Quit</button>
             </form>
         </section>
     </div>

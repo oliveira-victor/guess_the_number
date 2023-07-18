@@ -10,9 +10,17 @@ const gameoverButtons = document.querySelector('.gameover-buttons');
 const counter = document.querySelector('.victory-count');
 const playerVictory = document.querySelector('.player-victory');
 const cpuVictory = document.querySelector('.opponent-victory');
+const chooseCharsBtn = document.getElementById('choose-chars-btn');
 
 const char = document.querySelector('.char1');
 const cpu = document.querySelector('.char2');
+
+const choice1 = document.getElementById('choice1');
+const choice2 = document.getElementById('choice2');
+
+let playerId = '';
+let cpuId = '';
+let chosePlayer = false;
 
 let playerTurn = true;
 
@@ -29,20 +37,58 @@ let cpuScore = 0;
 
 let gameover = false;
 
+choice1.addEventListener('click', function () {
+    this.style.border = '6px solid #a82323';
+    choice2.style.border = '6px solid transparent';
+    playerId = 'char1';
+    cpuId = 'char2';
+    chosePlayer = true;
+})
+
+choice2.addEventListener('click', function () {
+    this.style.border = '6px solid #a82323';
+    choice1.style.border = '6px solid transparent';
+    playerId = 'char2';
+    cpuId = 'char1';
+    chosePlayer = true;
+})
+
+chooseCharsBtn.addEventListener('click', function () {
+    document.getElementById('players-section').style.display = 'block';
+})
+
 startButton.addEventListener(('click'), function () {
-    randomNumber();
-    char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
-    output.innerHTML = `<h2>Guess a number between ${minNumber} and ${maxNumber}</h2>`;
-    /*
-    startButton.style.display = 'none';
-    numberInput.style.display = 'block'
-    canvas.style.display = 'block';
-    counter.style.display = 'flex';
-    */
-    document.getElementById('main-section').style.display = 'none';
-    document.getElementById('game-section').style.display = 'block';
-    document.querySelector('.title').style.display = 'none';
-    document.querySelector('.menu-buttons-container').style.display = 'none';
+    if (chosePlayer != true) {
+        setTimeout(() => {
+            startButton.innerHTML = 'Ready';
+            startButton.style.background = '#a82323';
+            startButton.style.color = '#e6b30e';
+            startButton.classList.remove('shake');
+            choice1.style.border = '6px solid transparent';
+            choice2.style.border = '6px solid transparent';
+        }, 3000);
+        startButton.innerHTML = 'Choose a character first!';
+        startButton.style.background = '#e6b30e';
+        startButton.style.color = '#a82323';
+        startButton.classList.add('shake');
+        choice1.style.border = '6px solid #999';
+        choice2.style.border = '6px solid #999';
+    } else {
+        window.scrollTo(0, 0);
+        randomNumber();
+        char.innerHTML = `<img src="./images/${playerId}.webp" alt="First character">`
+        cpu.innerHTML = `<img src="./images/${cpuId}.webp" alt="First character">`
+        output.innerHTML = `<h2>Guess a number between ${minNumber} and ${maxNumber}</h2>`;
+        /*
+        startButton.style.display = 'none';
+        numberInput.style.display = 'block'
+        canvas.style.display = 'block';
+        counter.style.display = 'flex';
+        */
+        document.getElementById('main-section').style.display = 'none';
+        document.getElementById('players-section').style.display = 'none';
+        document.getElementById('game-section').style.display = 'block';
+    }
 })
 
 const randomNumber = () => {
@@ -69,8 +115,8 @@ const cpuTurn = () => {
         minNumber = 0;
 
         form.style.display = "none"
-        char.innerHTML = '<img src="./images/char1-lose.webp" alt="First character">';
-        cpu.innerHTML = '<img src="./images/char2-win.webp" alt="First character">';
+        char.innerHTML = `<img src="./images/${playerId}-lose.webp" alt="First character">`;
+        cpu.innerHTML = `<img src="./images/${cpuId}-win.webp" alt="Second character">`;
         output.innerHTML = `<h2>Your opponent guessed the right number: ${secretNumber}. <br />GAME OVER!</h2>`;
         gameover = true;
         gameoverButtons.style.display = 'block';
@@ -80,8 +126,8 @@ const cpuTurn = () => {
         playerScore += 1;
         playerVictory.innerHTML = playerScore;
 
-        char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">';
-        cpu.innerHTML = '<img src="./images/char2-lose.webp" alt="First character">';
+        char.innerHTML = `<img src="./images/${playerId}-win.webp" alt="First character">`;
+        cpu.innerHTML = `<img src="./images/${cpuId}-lose.webp" alt="Second character">`;
         output.innerHTML = `<h2>You got the last number: ${secretNumber}. <br />YOU WIN!</h2>`;
         gameover = true;
         form.style.display = 'none';
@@ -90,8 +136,8 @@ const cpuTurn = () => {
 
     let numbersDifference = maxNumber - minNumber;
     if (numbersDifference <= 3 && gameover != true) {
-        char.innerHTML = '<img src="./images/char1-fear.webp" alt="First character">';
-        cpu.innerHTML = '<img src="./images/char2-fear.webp" alt="First character">';
+        char.innerHTML = `<img src="./images/${playerId}-fear.webp" alt="First character">`;
+        cpu.innerHTML = `<img src="./images/${cpuId}-fear.webp" alt="Second character">`;
     }
 
     playerTurn = true;
@@ -104,7 +150,6 @@ form.addEventListener('submit', function (e) {
         userGuess = Number(numberInput.value);
 
         if (userGuess < minNumber || userGuess > maxNumber) {
-            // alert("This number is not an option.")
             setTimeout(() => {
                 form.classList.remove('shake');
             }, 500);
@@ -120,8 +165,8 @@ form.addEventListener('submit', function (e) {
             playerScore += 1;
             playerVictory.innerHTML = playerScore;
 
-            char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">';
-            cpu.innerHTML = '<img src="./images/char2-lose.webp" alt="First character">';
+            char.innerHTML = `<img src="./images/${playerId}-win.webp" alt="First character">`;
+            cpu.innerHTML = `<img src="./images/${cpuId}-lose.webp" alt="Second character">`;
             userList.innerHTML = arrUser.toString();
             output.innerHTML = `<h2>You guessed the right number! ${secretNumber}.<br />YOU WIN!</h2>`;
             form.style.display = 'none';
@@ -132,16 +177,16 @@ form.addEventListener('submit', function (e) {
 
         function validGuess() {
             playerTurn = false;
-            char.innerHTML = '<img src="./images/char1-guess.webp" alt="First character">'
+            char.innerHTML = `<img src="./images/${playerId}-guess.webp" alt="First character">`;
             arrUser.push(userGuess)
             userList.innerHTML = arrUser.toString();
-            char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
+            char.innerHTML = `<img src="./images/${playerId}.webp" alt="First character">`;
             cpuTurn();
         }
     }
 })
 
-restart.addEventListener('click', function(e) {
+restart.addEventListener('click', function (e) {
     e.preventDefault();
     randomNumber();
 
@@ -159,8 +204,8 @@ restart.addEventListener('click', function(e) {
 
     gameoverButtons.style.display = 'none';
 
-    char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
-    cpu.innerHTML = '<img src="./images/char2.webp" alt="First character">';
+    char.innerHTML = `<img src="./images/${playerId}.webp" alt="First character">`;
+    cpu.innerHTML = `<img src="./images/${cpuId}.webp" alt="First character">`;
 
     gameover = false;
     playerTurn = true;
