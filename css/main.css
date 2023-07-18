@@ -74,10 +74,6 @@ box-shadow: -15px 16px 0px -2px rgba(0,0,0,1);
     transition: all 1s ease;
 }
 
-.chars-container {
-    display: flex;
-}
-
 #output {
     padding-top: 20px;
 }
@@ -201,6 +197,10 @@ input:focus {
 @media screen and (max-width: 767px) {
     .title {
         font-size: 5vh;
+    }
+
+    .chars-container img {
+        width: 100%;
     }
 }
 
