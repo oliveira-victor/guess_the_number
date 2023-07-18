@@ -12,6 +12,7 @@ const playerVictory = document.querySelector('.player-victory');
 const cpuVictory = document.querySelector('.opponent-victory');
 
 const char = document.querySelector('.char1');
+const cpu = document.querySelector('.char2');
 
 let playerTurn = true;
 
@@ -19,9 +20,9 @@ let secretNumber = 0;
 let userGuess = 0;
 let cpuGuess = 0;
 let arrUser = []
+let arrCpu = []
 let minNumber = 0;
 let maxNumber = 0;
-let arrCpu = []
 
 let playerScore = 0;
 let cpuScore = 0;
@@ -64,7 +65,7 @@ const cpuTurn = () => {
         minNumber = 0;
 
         form.style.display = "none"
-        char.innerHTML = '<img src="./images/char1-lose.webp" alt="First character">'
+        char.innerHTML = '<img src="./images/char1-lose.webp" alt="First character">';
         output.innerHTML = `<h2>Your opponent guessed the right number: ${secretNumber}. <br />GAME OVER!</h2>`;
         gameoverButtons.style.display = 'block';
     }
@@ -73,7 +74,8 @@ const cpuTurn = () => {
         playerScore += 1;
         playerVictory.innerHTML = playerScore;
 
-        char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">'
+        char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">';
+        cpu.innerHTML = '<img src="./images/char2-lose.webp" alt="First character">';
         output.innerHTML = `<h2>You got the last number: ${secretNumber}. <br />YOU WIN!</h2>`;
         form.style.display = 'none';
         gameoverButtons.style.display = 'block';
@@ -101,7 +103,8 @@ form.addEventListener('submit', function (e) {
             playerScore += 1;
             playerVictory.innerHTML = playerScore;
 
-            char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">'
+            char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">';
+            cpu.innerHTML = '<img src="./images/char2-lose.webp" alt="First character">';
             userList.innerHTML = arrUser.toString();
             output.innerHTML = `<h2>You guessed the right number! ${secretNumber}.<br />YOU WIN!</h2>`;
             form.style.display = 'none';
