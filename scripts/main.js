@@ -46,7 +46,6 @@ const randomNumber = () => {
     minNumber = 1;
     maxNumber = 50;
     secretNumber = Math.floor(Math.random() * maxNumber) + 1;
-    // secretNumber = Math.floor(Math.random() * 10) + 1;
 }
 
 const cpuTurn = () => {
@@ -70,6 +69,7 @@ const cpuTurn = () => {
         char.innerHTML = '<img src="./images/char1-lose.webp" alt="First character">';
         cpu.innerHTML = '<img src="./images/char2-win.webp" alt="First character">';
         output.innerHTML = `<h2>Your opponent guessed the right number: ${secretNumber}. <br />GAME OVER!</h2>`;
+        gameover = true;
         gameoverButtons.style.display = 'block';
     }
 
