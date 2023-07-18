@@ -41,7 +41,7 @@ startButton.addEventListener(('click'), function () {
 
 const randomNumber = () => {
     minNumber = 1;
-    maxNumber = 10;
+    maxNumber = 50;
     secretNumber = Math.floor(Math.random() * maxNumber) + 1;
     // secretNumber = Math.floor(Math.random() * 10) + 1;
 }
@@ -50,7 +50,6 @@ const cpuTurn = () => {
     cpuGuess = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
     arrCpu.push(cpuGuess);
     cpuList.innerHTML = arrCpu.toString();
-
 
     if (cpuGuess > secretNumber) {
         maxNumber = cpuGuess - 1;
@@ -61,6 +60,8 @@ const cpuTurn = () => {
     } else {
         cpuScore += 1;
         cpuVictory.innerHTML = cpuScore;
+
+        minNumber = 0;
 
         form.style.display = "none"
         char.innerHTML = '<img src="./images/char1-lose.webp" alt="First character">'
@@ -73,7 +74,7 @@ const cpuTurn = () => {
         playerVictory.innerHTML = playerScore;
 
         char.innerHTML = '<img src="./images/char1-win.webp" alt="First character">'
-        output.innerHTML = `<h2>You got the last number: ${secretNumber}. YOU WIN!</h2>`;
+        output.innerHTML = `<h2>You got the last number: ${secretNumber}. <br />YOU WIN!</h2>`;
         form.style.display = 'none';
         gameoverButtons.style.display = 'block';
     }
@@ -114,7 +115,6 @@ form.addEventListener('submit', function (e) {
             char.innerHTML = '<img src="./images/char1-guess.webp" alt="First character">'
             arrUser.push(userGuess)
             userList.innerHTML = arrUser.toString();
-            validGuess = false
             char.innerHTML = '<img src="./images/char1.webp" alt="First character">'
             cpuTurn();
         }
@@ -127,8 +127,8 @@ restart.addEventListener('click', function (e) {
 
     userGuess = 0;
     cpuGuess = 0;
-    arrUser = []
-    arrCpu = []
+    arrUser = [];
+    arrCpu = [];
 
     cpuList.innerHTML = arrCpu.toString();
     userList.innerHTML = arrCpu.toString();
