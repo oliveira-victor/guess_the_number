@@ -156,7 +156,7 @@ const cpuTurn = () => {
         if (numbersDifference <= 3 && gameover != true) {
             char.innerHTML = charsImgs.player.fear;
             cpu.innerHTML = charsImgs.cpu.fear;
-        } else {
+        } else if (gameover != true) {
             cpu.innerHTML = charsImgs.cpu.main;
         }
 
