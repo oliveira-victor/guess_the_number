@@ -117,6 +117,8 @@ const cpuTurn = () => {
     arrCpu.push(cpuGuess);
     cpuList.innerHTML = arrCpu.toString();
 
+    cpu.innerHTML = charsImgs.cpu.guess;
+
     if (cpuGuess > secretNumber) {
         maxNumber = cpuGuess - 1;
         output.innerHTML = `<h2>Guess between ${minNumber} and ${maxNumber}</h2>`;
@@ -149,13 +151,17 @@ const cpuTurn = () => {
         gameoverButtons.style.display = 'block';
     }
 
-    let numbersDifference = maxNumber - minNumber;
-    if (numbersDifference <= 3 && gameover != true) {
-        char.innerHTML = charsImgs.player.fear;
-        cpu.innerHTML = charsImgs.cpu.fear;
-    }
+    setTimeout(() => {
+        let numbersDifference = maxNumber - minNumber;
+        if (numbersDifference <= 3 && gameover != true) {
+            char.innerHTML = charsImgs.player.fear;
+            cpu.innerHTML = charsImgs.cpu.fear;
+        } else {
+            cpu.innerHTML = charsImgs.cpu.main;
+        }
 
-    playerTurn = true;
+        playerTurn = true;
+    }, 1200);
 }
 
 form.addEventListener('submit', function (e) {
@@ -191,12 +197,15 @@ form.addEventListener('submit', function (e) {
         numberInput.value = '';
 
         function validGuess() {
+            setTimeout(() => {
+                char.innerHTML = charsImgs.player.main;
+                cpuTurn();
+            }, 1000);
             playerTurn = false;
             char.innerHTML = charsImgs.player.guess;
             arrUser.push(userGuess)
             userList.innerHTML = arrUser.toString();
-            char.innerHTML = charsImgs.player.main;
-            cpuTurn();
+
         }
     }
 })
