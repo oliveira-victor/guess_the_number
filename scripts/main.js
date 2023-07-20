@@ -37,6 +37,8 @@ let cpuScore = 0;
 
 let gameover = false;
 
+let charsImgs = {};
+
 choice1.addEventListener('click', function () {
     this.style.border = '6px solid #a82323';
     choice2.style.border = '6px solid transparent';
@@ -76,15 +78,28 @@ startButton.addEventListener(('click'), function () {
     } else {
         window.scrollTo(0, 0);
         randomNumber();
-        char.innerHTML = `<img src="./images/${playerId}.webp" alt="First character">`
-        cpu.innerHTML = `<img src="./images/${cpuId}.webp" alt="First character">`
+
+        charsImgs = {
+            player: {
+                main: `<img src="./images/${playerId}.webp" alt="First character">`,
+                win: `<img src="./images/${playerId}-win.webp" alt="First character">`,
+                lose: `<img src="./images/${playerId}-lose.webp" alt="First character">`,
+                fear: `<img src="./images/${playerId}-fear.webp" alt="First character">`,
+                guess: `<img src="./images/${playerId}-guess.webp" alt="First character">`,
+            },
+            cpu: {
+                main: `<img src="./images/${cpuId}.webp" alt="Second character">`,
+                win: `<img src="./images/${cpuId}-win.webp" alt="Second character">`,
+                lose: `<img src="./images/${cpuId}-lose.webp" alt="Second character">`,
+                fear: `<img src="./images/${cpuId}-fear.webp" alt="Second character">`,
+                guess: `<img src="./images/${cpuId}-guess.webp" alt="Second character">`,
+            }
+        }
+
+        char.innerHTML = charsImgs.player.main;
+        cpu.innerHTML = charsImgs.cpu.main;
+
         output.innerHTML = `<h2>Guess a number between ${minNumber} and ${maxNumber}</h2>`;
-        /*
-        startButton.style.display = 'none';
-        numberInput.style.display = 'block'
-        canvas.style.display = 'block';
-        counter.style.display = 'flex';
-        */
         document.getElementById('main-section').style.display = 'none';
         document.getElementById('players-section').style.display = 'none';
         document.getElementById('game-section').style.display = 'block';
@@ -115,8 +130,8 @@ const cpuTurn = () => {
         minNumber = 0;
 
         form.style.display = "none"
-        char.innerHTML = `<img src="./images/${playerId}-lose.webp" alt="First character">`;
-        cpu.innerHTML = `<img src="./images/${cpuId}-win.webp" alt="Second character">`;
+        char.innerHTML = charsImgs.player.lose;
+        cpu.innerHTML = charsImgs.cpu.win;
         output.innerHTML = `<h2>Your opponent guessed the right number: ${secretNumber}. <br />GAME OVER!</h2>`;
         gameover = true;
         gameoverButtons.style.display = 'block';
@@ -126,8 +141,8 @@ const cpuTurn = () => {
         playerScore += 1;
         playerVictory.innerHTML = playerScore;
 
-        char.innerHTML = `<img src="./images/${playerId}-win.webp" alt="First character">`;
-        cpu.innerHTML = `<img src="./images/${cpuId}-lose.webp" alt="Second character">`;
+        char.innerHTML = charsImgs.player.win;
+        cpu.innerHTML = charsImgs.cpu.lose;
         output.innerHTML = `<h2>You got the last number: ${secretNumber}. <br />YOU WIN!</h2>`;
         gameover = true;
         form.style.display = 'none';
@@ -136,8 +151,8 @@ const cpuTurn = () => {
 
     let numbersDifference = maxNumber - minNumber;
     if (numbersDifference <= 3 && gameover != true) {
-        char.innerHTML = `<img src="./images/${playerId}-fear.webp" alt="First character">`;
-        cpu.innerHTML = `<img src="./images/${cpuId}-fear.webp" alt="Second character">`;
+        char.innerHTML = charsImgs.player.fear;
+        cpu.innerHTML = charsImgs.cpu.fear;
     }
 
     playerTurn = true;
@@ -165,8 +180,8 @@ form.addEventListener('submit', function (e) {
             playerScore += 1;
             playerVictory.innerHTML = playerScore;
 
-            char.innerHTML = `<img src="./images/${playerId}-win.webp" alt="First character">`;
-            cpu.innerHTML = `<img src="./images/${cpuId}-lose.webp" alt="Second character">`;
+            char.innerHTML = charsImgs.player.win;
+            cpu.innerHTML = charsImgs.cpu.lose;
             userList.innerHTML = arrUser.toString();
             output.innerHTML = `<h2>You guessed the right number! ${secretNumber}.<br />YOU WIN!</h2>`;
             form.style.display = 'none';
@@ -177,10 +192,10 @@ form.addEventListener('submit', function (e) {
 
         function validGuess() {
             playerTurn = false;
-            char.innerHTML = `<img src="./images/${playerId}-guess.webp" alt="First character">`;
+            char.innerHTML = charsImgs.player.guess;
             arrUser.push(userGuess)
             userList.innerHTML = arrUser.toString();
-            char.innerHTML = `<img src="./images/${playerId}.webp" alt="First character">`;
+            char.innerHTML = charsImgs.player.main;
             cpuTurn();
         }
     }
@@ -204,8 +219,8 @@ restart.addEventListener('click', function (e) {
 
     gameoverButtons.style.display = 'none';
 
-    char.innerHTML = `<img src="./images/${playerId}.webp" alt="First character">`;
-    cpu.innerHTML = `<img src="./images/${cpuId}.webp" alt="First character">`;
+    char.innerHTML = charsImgs.player.main;
+    cpu.innerHTML = charsImgs.cpu.main;
 
     gameover = false;
     playerTurn = true;
