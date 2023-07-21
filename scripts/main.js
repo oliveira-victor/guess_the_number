@@ -112,7 +112,7 @@ startButton.addEventListener(('click'), function () {
 
 const randomNumber = () => {
     minNumber = 1;
-    maxNumber = 50;
+    maxNumber = 100;
     secretNumber = Math.floor(Math.random() * maxNumber) + 1;
 }
 
@@ -122,7 +122,7 @@ const cpuTurn = () => {
     cpuList.innerHTML = arrCpu.toString();
 
     cpu.innerHTML = charsImgs.cpu.guess;
-    ballons();
+    balloons();
 
     if (cpuGuess > secretNumber) {
         maxNumber = cpuGuess - 1;
@@ -174,7 +174,6 @@ form.addEventListener('submit', function (e) {
 
     if (playerTurn == true) {
         userGuess = Number(numberInput.value);
-        ballons();
 
         if (userGuess < minNumber || userGuess > maxNumber) {
             setTimeout(() => {
@@ -183,11 +182,14 @@ form.addEventListener('submit', function (e) {
             form.classList.add('shake');
         } else if (userGuess > secretNumber) {
             maxNumber = userGuess - 1;
-            validGuess()
+            balloons();
+            validGuess();
         } else if (userGuess < secretNumber) {
             minNumber = userGuess + 1;
-            validGuess()
+            balloons();
+            validGuess();
         } else {
+            balloons();
             arrUser.push(userGuess)
             playerScore += 1;
             playerVictory.innerHTML = playerScore;
@@ -243,7 +245,7 @@ restart.addEventListener('click', function (e) {
 
 })
 
-function ballons() {
+function balloons() {
     if (playerTurn == true) {
         balloon1.classList.add('balloon1');
         balloon1.innerHTML = userGuess;
