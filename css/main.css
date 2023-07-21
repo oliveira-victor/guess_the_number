@@ -48,17 +48,10 @@ a {
     text-transform: uppercase;
     font-weight: bold;
     transition: all .2s ease;
-    -webkit-box-shadow: -6px 10px 0px 1px rgba(0, 0, 0, 1);
-    -moz-box-shadow: -6px 10px 0px 1px rgba(0, 0, 0, 1);
-    box-shadow: -6px 10px 0px 1px rgba(0, 0, 0, 1);
-
 }
 
 .menu-btn:hover {
     transform: scale(1.05);
-    -webkit-box-shadow: -15px 16px 0px -2px rgba(0, 0, 0, 1);
-    -moz-box-shadow: -15px 16px 0px -2px rgba(0, 0, 0, 1);
-    box-shadow: -15px 16px 0px -2px rgba(0, 0, 0, 1);
 }
 
 #players-section {
@@ -259,7 +252,6 @@ input:focus {
 
     .menu-btn:hover {
         transform: none;
-        box-shadow: none;
     }
 }
 
