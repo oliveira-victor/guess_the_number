@@ -256,6 +256,11 @@ input:focus {
     .chars-container img {
         width: 100%;
     }
+
+    .menu-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
 }
 
 /* ANIMATIONS */
