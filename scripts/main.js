@@ -12,6 +12,10 @@ const playerVictory = document.querySelector('.player-victory');
 const cpuVictory = document.querySelector('.opponent-victory');
 const chooseCharsBtn = document.getElementById('choose-chars-btn');
 
+const balloon1 = document.getElementById('balloon1');
+const balloon2 = document.getElementById('balloon2');
+const clue = document.querySelector('.clue');
+
 const char = document.querySelector('.char1');
 const cpu = document.querySelector('.char2');
 
@@ -118,6 +122,7 @@ const cpuTurn = () => {
     cpuList.innerHTML = arrCpu.toString();
 
     cpu.innerHTML = charsImgs.cpu.guess;
+    ballons();
 
     if (cpuGuess > secretNumber) {
         maxNumber = cpuGuess - 1;
@@ -169,6 +174,7 @@ form.addEventListener('submit', function (e) {
 
     if (playerTurn == true) {
         userGuess = Number(numberInput.value);
+        ballons();
 
         if (userGuess < minNumber || userGuess > maxNumber) {
             setTimeout(() => {
@@ -236,3 +242,45 @@ restart.addEventListener('click', function (e) {
 
 
 })
+
+function ballons() {
+    if (playerTurn == true) {
+        balloon1.classList.add('balloon1');
+        balloon1.innerHTML = userGuess;
+        setTimeout(() => {
+            balloon1.classList.remove('balloon1');
+            balloon1.innerHTML = '';
+        }, 1000);
+
+        if (userGuess < secretNumber) {
+            clue.innerHTML = "Higher!"
+            setTimeout(() => {
+                clue.innerHTML = ""
+            }, 1000);
+        } else if (userGuess > secretNumber) {
+            clue.innerHTML = "Lower!"
+            setTimeout(() => {
+                clue.innerHTML = ""
+            }, 1000);
+        }
+    } else {
+        balloon2.classList.add('balloon2');
+        balloon2.innerHTML = cpuGuess;
+        setTimeout(() => {
+            balloon2.classList.remove('balloon2');
+            balloon2.innerHTML = '';
+        }, 1000);
+
+        if (cpuGuess < secretNumber) {
+            clue.innerHTML = "Higher!"
+            setTimeout(() => {
+                clue.innerHTML = ""
+            }, 1000);
+        } else if (cpuGuess > secretNumber) {
+            clue.innerHTML = "Lower!"
+            setTimeout(() => {
+                clue.innerHTML = ""
+            }, 1000);
+        }
+    }
+}
