@@ -134,28 +134,25 @@ const cpuTurn = () => {
         cpuScore += 1;
         cpuVictory.innerHTML = cpuScore;
 
+        callGameover();
+
         minNumber = 0;
 
-        form.style.display = "none"
         char.innerHTML = charsImgs.player.lose;
         cpu.innerHTML = charsImgs.cpu.win;
-        output.classList.remove('pulsate');
+        
         output.innerHTML = `<h2>Your opponent guessed the right number: ${secretNumber}. <br />GAME OVER!</h2>`;
-        gameover = true;
-        gameoverButtons.style.display = 'block';
     }
 
     if (minNumber == maxNumber) {
         playerScore += 1;
         playerVictory.innerHTML = playerScore;
 
+        callGameover();
+
         char.innerHTML = charsImgs.player.win;
         cpu.innerHTML = charsImgs.cpu.lose;
-        output.classList.remove('pulsate');
         output.innerHTML = `<h2>You got the last number: ${secretNumber}. <br />YOU WIN!</h2>`;
-        gameover = true;
-        form.style.display = 'none';
-        gameoverButtons.style.display = 'block';
     }
 
     setTimeout(() => {
@@ -197,13 +194,12 @@ form.addEventListener('submit', function (e) {
             playerScore += 1;
             playerVictory.innerHTML = playerScore;
 
+            callGameover();
+
             char.innerHTML = charsImgs.player.win;
             cpu.innerHTML = charsImgs.cpu.lose;
             userList.innerHTML = arrUser.toString();
-            output.classList.remove('pulsate');
             output.innerHTML = `<h2>You guessed the right number! ${secretNumber}.<br />YOU WIN!</h2>`;
-            form.style.display = 'none';
-            gameoverButtons.style.display = 'block';
         }
 
         numberInput.value = '';
@@ -289,6 +285,13 @@ function balloons() {
             }, 1000);
         }
     }
+}
+
+function callGameover() {
+    gameover = true;
+    form.style.display = "none";
+    output.classList.remove('pulsate');
+    gameoverButtons.style.display = 'block';
 }
 
 // Collapsable
