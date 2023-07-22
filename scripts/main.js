@@ -139,6 +139,7 @@ const cpuTurn = () => {
         form.style.display = "none"
         char.innerHTML = charsImgs.player.lose;
         cpu.innerHTML = charsImgs.cpu.win;
+        output.classList.remove('pulsate');
         output.innerHTML = `<h2>Your opponent guessed the right number: ${secretNumber}. <br />GAME OVER!</h2>`;
         gameover = true;
         gameoverButtons.style.display = 'block';
@@ -150,6 +151,7 @@ const cpuTurn = () => {
 
         char.innerHTML = charsImgs.player.win;
         cpu.innerHTML = charsImgs.cpu.lose;
+        output.classList.remove('pulsate');
         output.innerHTML = `<h2>You got the last number: ${secretNumber}. <br />YOU WIN!</h2>`;
         gameover = true;
         form.style.display = 'none';
@@ -161,6 +163,7 @@ const cpuTurn = () => {
         if (numbersDifference <= 3 && gameover != true) {
             char.innerHTML = charsImgs.player.fear;
             cpu.innerHTML = charsImgs.cpu.fear;
+            output.classList.add('pulsate');
         } else if (gameover != true) {
             cpu.innerHTML = charsImgs.cpu.main;
         }
@@ -197,6 +200,7 @@ form.addEventListener('submit', function (e) {
             char.innerHTML = charsImgs.player.win;
             cpu.innerHTML = charsImgs.cpu.lose;
             userList.innerHTML = arrUser.toString();
+            output.classList.remove('pulsate');
             output.innerHTML = `<h2>You guessed the right number! ${secretNumber}.<br />YOU WIN!</h2>`;
             form.style.display = 'none';
             gameoverButtons.style.display = 'block';
