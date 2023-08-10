@@ -93,6 +93,7 @@ startButton.addEventListener(('click'), function () {
             startButton.classList.remove('shake');
             choice1.style.border = '6px solid transparent';
             choice2.style.border = '6px solid transparent';
+            choice3.style.border = '6px solid transparent';
         }, 3000);
         startButton.innerHTML = 'Choose a character!';
         startButton.style.background = '#e6b30e';
@@ -100,6 +101,7 @@ startButton.addEventListener(('click'), function () {
         startButton.classList.add('shake');
         choice1.style.border = '6px solid #999';
         choice2.style.border = '6px solid #999';
+        choice3.style.border = '6px solid #999';
     } else {
         chooseCpuChar()
         window.scrollTo(0, 0);
