@@ -62,7 +62,8 @@ a {
 
 #choice1,
 #choice2,
-#choice3 {
+#choice3,
+#choice4 {
     padding: 20px;
     border: 6px solid transparent;
     border-radius: 30px;

@@ -22,6 +22,7 @@ const cpu = document.querySelector('.char2');
 const choice1 = document.getElementById('choice1');
 const choice2 = document.getElementById('choice2');
 const choice3 = document.getElementById('choice3');
+const choice4 = document.getElementById('choice4');
 
 let availableCpuChars = [];
 
@@ -51,7 +52,7 @@ choice1.addEventListener('click', function () {
     choice2.style.border = '6px solid transparent';
     choice3.style.border = '6px solid transparent';
     playerId = 'char1';
-    availableCpuChars = ['char2', 'char3'];
+    availableCpuChars = ['char2', 'char3', 'char4'];
     chosePlayer = true;
 })
 
@@ -60,7 +61,7 @@ choice2.addEventListener('click', function () {
     choice1.style.border = '6px solid transparent';
     choice3.style.border = '6px solid transparent';
     playerId = 'char2';
-    availableCpuChars = ['char1', 'char3'];
+    availableCpuChars = ['char1', 'char3', 'char4'];
     chosePlayer = true;
 })
 
@@ -69,7 +70,16 @@ choice3.addEventListener('click', function () {
     choice1.style.border = '6px solid transparent';
     choice2.style.border = '6px solid transparent';
     playerId = 'char3';
-    availableCpuChars = ['char1', 'char2'];
+    availableCpuChars = ['char1', 'char2', 'char4'];
+    chosePlayer = true;
+})
+
+choice4.addEventListener('click', function () {
+    this.style.border = '6px solid #a82323';
+    choice1.style.border = '6px solid transparent';
+    choice2.style.border = '6px solid transparent';
+    playerId = 'char4';
+    availableCpuChars = ['char1', 'char2', 'char3'];
     chosePlayer = true;
 })
 
