@@ -24,6 +24,7 @@ const choice2 = document.getElementById('choice2');
 const choice3 = document.getElementById('choice3');
 const choice4 = document.getElementById('choice4');
 
+let availableChars = ['char1', 'char2', 'char3', 'char4'];
 let availableCpuChars = [];
 
 let playerId = '';
@@ -48,44 +49,39 @@ let gameover = false;
 let charsImgs = {};
 
 choice1.addEventListener('click', function () {
-    this.style.border = '6px solid #a82323';
-    choice2.style.border = '6px solid transparent';
-    choice3.style.border = '6px solid transparent';
-    choice4.style.border = '6px solid transparent';
     playerId = 'char1';
-    availableCpuChars = ['char2', 'char3', 'char4'];
-    chosePlayer = true;
+    handlerChars();
+    this.style.border = '6px solid #a82323';
 })
 
 choice2.addEventListener('click', function () {
-    this.style.border = '6px solid #a82323';
-    choice1.style.border = '6px solid transparent';
-    choice3.style.border = '6px solid transparent';
-    choice4.style.border = '6px solid transparent';
     playerId = 'char2';
-    availableCpuChars = ['char1', 'char3', 'char4'];
-    chosePlayer = true;
+    handlerChars();
+    this.style.border = '6px solid #a82323';
 })
 
 choice3.addEventListener('click', function () {
-    this.style.border = '6px solid #a82323';
-    choice1.style.border = '6px solid transparent';
-    choice2.style.border = '6px solid transparent';
-    choice4.style.border = '6px solid transparent';
     playerId = 'char3';
-    availableCpuChars = ['char1', 'char2', 'char4'];
-    chosePlayer = true;
+    handlerChars();
+    this.style.border = '6px solid #a82323';
 })
 
 choice4.addEventListener('click', function () {
-    this.style.border = '6px solid #a82323';
-    choice1.style.border = '6px solid transparent';
-    choice2.style.border = '6px solid transparent';
-    choice3.style.border = '6px solid transparent';
     playerId = 'char4';
-    availableCpuChars = ['char1', 'char2', 'char3'];
-    chosePlayer = true;
+    handlerChars();
+    this.style.border = '6px solid #a82323';
 })
+
+function handlerChars() {
+    const nodeList = document.querySelectorAll('.character');
+    for (let i = 0; i < nodeList.length; i++) {
+        nodeList[i].style.border = '6px solid transparent';
+    }
+    availableCpuChars = availableChars.filter(function(removeChar) {
+        return removeChar !== playerId;
+    })
+    chosePlayer = true;
+}
 
 function chooseCpuChar() {
     cpuCharIndex = Math.floor(Math.random() * availableCpuChars.length);
