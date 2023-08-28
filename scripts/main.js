@@ -77,7 +77,7 @@ function handlerChars() {
     for (let i = 0; i < nodeList.length; i++) {
         nodeList[i].style.border = '6px solid transparent';
     }
-    availableCpuChars = availableChars.filter(function(removeChar) {
+    availableCpuChars = availableChars.filter(function (removeChar) {
         return removeChar !== playerId;
     })
     chosePlayer = true;
@@ -87,7 +87,6 @@ function chooseCpuChar() {
     cpuCharIndex = Math.floor(Math.random() * availableCpuChars.length);
 
     cpuId = availableCpuChars[cpuCharIndex];
-    console.log(cpuId)
 }
 
 chooseCharsBtn.addEventListener('click', function () {
@@ -115,8 +114,7 @@ startButton.addEventListener(('click'), function () {
         choice3.style.border = '6px solid #999';
         choice4.style.border = '6px solid #999';
     } else {
-        chooseCpuChar()
-        window.scrollTo(0, 0);
+        chooseCpuChar();
         randomNumber();
 
         charsImgs = {
@@ -143,6 +141,13 @@ startButton.addEventListener(('click'), function () {
         document.getElementById('main-section').style.display = 'none';
         document.getElementById('players-section').style.display = 'none';
         document.getElementById('game-section').style.display = 'block';
+
+        window.scrollTo({
+            top: 1,
+            left: 1,
+            behavior: "smooth",
+        });
+        
     }
 })
 
@@ -176,7 +181,7 @@ const cpuTurn = () => {
 
         char.innerHTML = charsImgs.player.lose;
         cpu.innerHTML = charsImgs.cpu.win;
-        
+
         output.innerHTML = `<h2>Your opponent guessed the right number: ${secretNumber}. <br />GAME OVER!</h2>`;
     }
 
