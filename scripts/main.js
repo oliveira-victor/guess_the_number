@@ -11,6 +11,7 @@ const counter = document.querySelector('.victory-count');
 const playerVictory = document.querySelector('.player-victory');
 const cpuVictory = document.querySelector('.opponent-victory');
 const chooseCharsBtn = document.getElementById('choose-chars-btn');
+const quitBtn = document.getElementById('quit-btn');
 
 const balloon1 = document.getElementById('balloon1');
 const balloon2 = document.getElementById('balloon2');
@@ -148,6 +149,7 @@ startButton.addEventListener(('click'), function () {
             behavior: "smooth",
         });
         
+        history.back()
     }
 })
 
@@ -259,7 +261,7 @@ form.addEventListener('submit', function (e) {
     }
 })
 
-restart.addEventListener('click', function (e) {
+restart.addEventListener('click', function(e) {
     e.preventDefault();
     randomNumber();
 
@@ -282,8 +284,10 @@ restart.addEventListener('click', function (e) {
 
     gameover = false;
     playerTurn = true;
+})
 
-
+quitBtn.addEventListener('click', function() {
+    document.location.href="/";
 })
 
 function balloons() {
